@@ -1,5 +1,3 @@
-console.log `Guess the Number Party!`
-console.log('Guess the Number Party!')
 const game = {
   title: 'Guess the Number!',
   biggestNum: 100,
@@ -9,21 +7,20 @@ const game = {
 
   getGuess: function() { 
     const readIn = prompt(`Enter a guess between ${ game.smallestNum} and ${game.biggestNum}`)
-    const number = readIn
+    const number = parseInt(readIn)
     console.log(number)
     return number
   },
   
   render: function(guess) {
     if (guess === game.secretNum) {
-      console.log `Congrats! You guessed the number in ${game.prevGuesses.length} guesses!`
+      window.alert(`Congrats! You guessed the number in ${game.prevGuesses.length} guesses!`)
     } else if ( guess > game.secretNum) {
-        console.log `Your guess is too high`
+        window.alert(`Your guess is too high`)
     } else {
-        console.log `Your guess is too low`
+        window.alert(`Your guess is too low`)
     }
-    console.log `Previous guesses: ${game.prevGuesses.join(',')}`
-    
+        window.alert(`Previous guesses: ${game.prevGuesses.join(',')}`)  
   },
 
   play: function() {
@@ -32,9 +29,9 @@ const game = {
     
     do {
       let guess = game.getGuess()
-      game.prevGuesses.push(guess)
-      game.render(this.guess)
-    } while (this.guess !== this.secretNum);
+      this.prevGuesses.push(guess)
+      game.render(guess)
+     } while (this.prevGuesses[this.prevGuesses.length - 1] !== this.secretNum);
     return `Good Job!`
   }
 }//end game
