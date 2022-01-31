@@ -1,3 +1,5 @@
+console.log `Guess the Number Party!`
+console.log('Guess the Number Party!')
 const game = {
   title: 'Guess the Number!',
   biggestNum: 100,
@@ -15,8 +17,12 @@ const game = {
   //         !!! parseInt returns Nan if the string cannot be parsed into a number!!!
   getGuess: function() { //may not need param for guess
     //prompt and read in input from user
-    const readIn = prompt(`Enter a guess between ${smallestNum} and ${biggestNum}`)
-    return readIn
+    const readIn = prompt(`Enter a guess between ${ game.smallestNum} and ${game.biggestNum}`)
+    //maybe error check and let user know if they entered letters or symbols instead of numbers and if number is within correct range
+    //console.log(readIn)
+    const number = readIn
+    console.log(number)
+    //return readIn
   },
   
   // 5) Add render() to game{} that play() will call after a guess has been made that alerts:
@@ -26,6 +32,7 @@ const game = {
   //      !!! template literals not only have interpolation,but also honor whitespace, including line breaks!
   //      !!! the LIST of previous guesses can be generated using built-in     join()
   render: function(guess, secretNum, prevGuesses) {
+    console.log(guess)
     if (guess === secretNum) {
       console.log `Congrats! You guessed the number in ${prevGuesses.length} guesses!`
     } else {
@@ -43,11 +50,14 @@ const game = {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
       //nvoke getGuess() from inside a loop
-    do {
-      let guess = getGuess()
-      prevGuesses.push(guess)
-      render(guess, secretNum, prevGuesses)
-    } while (guess !== secretNum);
+
+    //do {
+      let guess = game.getGuess()
+    //   prevGuesses.push(guess)
+    //   game.render(guess, secretNum, prevGuesses)
+    // } while (guess !== secretNum);
     return `Good Job!`
   }
 }//end game
+
+console.log(game.play())
