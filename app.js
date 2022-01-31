@@ -4,13 +4,16 @@ const game = {
   smallestNum: 1,
   secretNum: null,
   prevGuesses: [],
-  // test to ensure it only takes in numbers within the range
-  // ensure no letters or symbols can be taken in
+
   getGuess: function() { 
-    const numChk = 1
     let readIn = prompt(`Enter a guess between ${game.smallestNum} and ${game.biggestNum}`)
-    let number = parseInt(readIn)
-    
+    // let number = parseInt(readIn)
+    //Error Checking
+    while (readIn > game.biggestNum || readIn < game.smallestNum || isNaN(readIn)) {
+      readIn = parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}`))
+    }
+    return parseInt(readIn)
+    /*
     if (number > game.biggestNum || number < game.smallestNum || isNaN(number)) {
       if (number > game.biggestNum){
       window.alert(`Your guess is out of bounds! Guess a number below ${game.biggestNum}!`) 
@@ -19,11 +22,11 @@ const game = {
       window.alert(`Your guess is out of bounds! Guess a number above ${game.smallestNum}!`) 
       game.play()
       } else {
-        window.alert(`Your guess is not a number! Enter a number!`)
-        game.play()
-      }
-    }//end outer if
-    return number
+      window.alert(`Your guess is not a number! Enter a number!`)
+      game.play()
+      } */
+    //end outer if
+    // number
   },
   
   render: function(guess) {
